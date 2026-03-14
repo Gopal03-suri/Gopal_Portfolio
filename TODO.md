@@ -1,1 +1,6 @@
-# Update index.html paths after moving from public&#10;&#10;## Plan Breakdown:&#10;- [x] Confirm plan with user&#10;- [x] Update index.html paths to relative react-portfolio/public/&#10;- [x] Test by opening index.html in browser&#10;- [x] Complete task&#10;&#10;## Demo&#10;Open c:/Users/Asus/Desktop/gopal portfolio/index.html in browser - assets should load from react-portfolio/public/.
+# Task Progress: Fix missing index.html
+
+- [x] Created react-portfolio/public/index.html (standard CRA template)
+- [ ] Fixed paths in react-portfolio/index.html (in progress)
+- [ ] Test with `cd react-portfolio && npm start`
+- [ ] Cleanup duplicate index.html if not needed (root react-portfolio/index.html can be deleted after npm start works, as CRA uses public/index.html)
