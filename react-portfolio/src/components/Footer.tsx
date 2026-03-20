@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, Heart, Code } from 'lucide-react';
 import './Footer.css';
 
@@ -11,15 +12,15 @@ const Footer: React.FC = () => {
         <div className="footer-content">
           <div className="footer-section">
             <h3>Gopal Kumar</h3>
-            <p>Full Stack Developer & iOS Developer passionate about creating innovative solutions.</p>
+            <p>Full Stack Developer & AI Agent Developer passionate about creating innovative solutions.</p>
             <div className="footer-social">
               <a href="https://github.com/gopal974" target="_blank" rel="noopener noreferrer">
                 <Github size={20} />
               </a>
-              <a href="https://linkedin.com/in/gopal-kumar" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/gopal-kumar-purbey-ba7550314cd" target="_blank" rel="noopener noreferrer">
                 <Linkedin size={20} />
               </a>
-              <a href="mailto:gopal.kumar@example.com">
+              <a href="mailto:gopal@example.com">
                 <Mail size={20} />
               </a>
             </div>
@@ -28,27 +29,27 @@ const Footer: React.FC = () => {
           <div className="footer-section">
             <h4>Quick Links</h4>
             <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="/about">About</a></li>
-              <li><a href="/projects">Projects</a></li>
-              <li><a href="/skills">Skills</a></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/projects">Projects</Link></li>
+              <li><Link to="/skills">Skills</Link></li>
             </ul>
           </div>
 
           <div className="footer-section">
             <h4>More</h4>
             <ul>
-              <li><a href="/certifications">Certifications</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li><Link to="/certifications">Certifications</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
 
           <div className="footer-section">
             <h4>Get In Touch</h4>
             <p>Available for freelance opportunities and collaborations.</p>
-            <a href="/contact" className="footer-cta">
+            <Link to="/contact" className="footer-cta">
               Let's Work Together
-            </a>
+            </Link>
           </div>
         </div>
 

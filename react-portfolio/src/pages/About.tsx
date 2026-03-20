@@ -109,7 +109,7 @@ const About: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <img src="/go.jpeg" alt="Gopal Kumar Purbey" />
+              <img src={process.env.PUBLIC_URL + "/go.jpeg"} alt="Gopal Kumar Purbey" />
               <div className="image-overlay">
                 <Heart className="heart-icon" />
               </div>

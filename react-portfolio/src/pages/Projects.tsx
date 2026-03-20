@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Calendar, Code } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import './Projects.css';
 
 interface Project {
@@ -246,10 +247,10 @@ const Projects: React.FC = () => {
         >
           <h2>Interested in collaborating?</h2>
           <p>I'm always open to discussing new opportunities and interesting projects.</p>
-          <a href="/contact" className="btn btn-accent">
+          <Link to="/contact" className="btn btn-accent">
             <Code size={20} />
             Let's Work Together
-          </a>
+          </Link>
         </motion.div>
       </div>
     </div>

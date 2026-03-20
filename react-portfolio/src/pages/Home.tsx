@@ -52,7 +52,7 @@ const Home: React.FC = () => {
             {/* IMAGE */}
 
             <motion.div className="hero-image" variants={itemVariants}>
-              <img src="/gopal.jpg" alt="Gopal Kumar Purbey" />
+              <img src={process.env.PUBLIC_URL + "/gopal.jpg"} alt="Gopal Kumar Purbey" />
               <div className="image-glow"></div>
             </motion.div>
 
@@ -80,7 +80,7 @@ const Home: React.FC = () => {
                   View My Work <ArrowRight size={20} />
                 </Link>
 
-                <a href="/resume.pdf" className="btn btn-secondary">
+                <a href={process.env.PUBLIC_URL + "/Resume Gopal.pdf"} className="btn btn-secondary">
                   <Download size={20} /> Download Resume
                 </a>
 

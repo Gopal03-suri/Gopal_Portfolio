@@ -44,13 +44,13 @@ const Contact: React.FC = () => {
     {
       icon: <Mail size={24} />,
       title: "Email",
-      value: "gopal.kumar@example.com",
+      value: "gopalpurbey708@gmail.com",
       link: "mailto:gopal.kumar@example.com"
     },
     {
       icon: <Phone size={24} />,
       title: "Phone",
-      value: "+91 XXXXX XXXXX",
+      value: "+91 7827008357",
       link: "tel:+91XXXXXXXXX"
     },
     {
@@ -63,25 +63,25 @@ const Contact: React.FC = () => {
 
   const socialLinks = [
     {
-      icon: <Github size={24} />,
+      icon: <Github size={28} />,
       name: "GitHub",
-      url: "https://github.com/gopal974",
+      url: "https://github.com/Gopal03-suri",
       color: "#333"
     },
+  {
+  icon: <Linkedin size={28} />,
+  name: "LinkedIn",
+  url: "https://www.linkedin.com/in/gopal-kumar-purbey-ba7550314",
+  color: "#0077b5"
+},
     {
-      icon: <Linkedin size={24} />,
-      name: "LinkedIn",
-      url: "https://linkedin.com/in/gopal-kumar",
-      color: "#0077b5"
-    },
-    {
-      icon: <Twitter size={24} />,
+      icon: <Twitter size={28} />,
       name: "Twitter",
-      url: "https://twitter.com/gopal_kumar",
+      url: "https://x.com/Gopal76328206",
       color: "#1da1f2"
     },
     {
-      icon: <MessageCircle size={24} />,
+      icon: <MessageCircle size={28} />,
       name: "Discord",
       url: "#",
       color: "#7289da"
@@ -168,7 +168,6 @@ const Contact: React.FC = () => {
                     transition={{ duration: 0.2 }}
                   >
                     {social.icon}
-                    <span>{social.name}</span>
                   </motion.a>
                 ))}
               </div>

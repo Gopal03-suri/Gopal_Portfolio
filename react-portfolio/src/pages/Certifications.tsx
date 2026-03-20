@@ -24,8 +24,8 @@ const Certifications: React.FC = () => {
       issuer: "Oracle University",
       date: "2025",
       description: "Completed Oracle Cloud Infrastructure certification and earned AI Foundation Associate badge from Oracle University.",
-      certificateUrl: "/oracle-certi.jpg",
-      badgeUrl: "/oracle-certi.jpg",
+      certificateUrl: process.env.PUBLIC_URL + "/oracle-certi.jpg",
+      badgeUrl: process.env.PUBLIC_URL +"/orbad.jpeg",
       icon: "☁️",
       category: "cloud",
       skills: ["Oracle Cloud", "AI Foundation", "Cloud Computing"]
@@ -36,8 +36,8 @@ const Certifications: React.FC = () => {
       issuer: "AWS Academy",
       date: "2025",
       description: "Successfully completed 20 hours AWS Academy Cloud Foundation course and earned graduate certificate from AWS Academy.",
-      certificateUrl: "/aws-20hrs.jpg",
-      badgeUrl: "/badge-aws.jpg",
+      certificateUrl: process.env.PUBLIC_URL +"/aws-20hrs.jpg",
+      badgeUrl: process.env.PUBLIC_URL + "/badge-aws.jpg",
       icon: "🎆",
       category: "cloud",
       skills: ["AWS", "Cloud Foundation", "Cloud Computing"]
@@ -48,7 +48,7 @@ const Certifications: React.FC = () => {
       issuer: "AWS",
       date: "2025",
       description: "Attended comprehensive seminar on DevOps integration with AI technologies and modern development practices.",
-      certificateUrl: "/aws-devops.jpg",
+      certificateUrl: process.env.PUBLIC_URL + "/aws.jpeg",
       icon: "⚙️",
       category: "devops",
       skills: ["DevOps", "AI", "AWS", "Modern Development"]
@@ -59,7 +59,7 @@ const Certifications: React.FC = () => {
       issuer: "PU DAO",
       date: "2025",
       description: "Participated in 2 days Polkadot BootCamp organized by PU DAO Hack Tour at Parul University.",
-      certificateUrl: "/hacktour.jpg",
+      certificateUrl: process.env.PUBLIC_URL + "/hacktour.jpg",
       icon: "🚀",
       category: "blockchain",
       skills: ["Blockchain", "Polkadot", "Web3", "Hackathon"]
@@ -70,7 +70,7 @@ const Certifications: React.FC = () => {
       issuer: "SkillEcted",
       date: "2025",
       description: "Participated in webinar on 'Build a Movie Search App Using React JS – Explore, Search & Discover!' organized by SkillEcted.",
-      certificateUrl: "/skilltech1.jpg",
+      certificateUrl: process.env.PUBLIC_URL + "/skilltech1.jpg",
       icon: "🎓",
       category: "web",
       skills: ["React JS", "Web Development", "JavaScript"]
@@ -81,7 +81,7 @@ const Certifications: React.FC = () => {
       issuer: "Technical Festival Committee",
       date: "2024",
       description: "Participated in Gujarat's largest technical festival showcasing technical skills and innovation.",
-      certificateUrl: "/GOOGLER.pdf",
+      certificateUrl: process.env.PUBLIC_URL + "/resume.pdf",
       icon: "🏆",
       category: "competition",
       skills: ["Technical Skills", "Innovation", "Competition"]
@@ -92,7 +92,7 @@ const Certifications: React.FC = () => {
       issuer: "Startup Incubator",
       date: "2024",
       description: "Participated in an intensive startup bootcamp program focusing on entrepreneurship and innovation.",
-      certificateUrl: "/bootcamp.png",
+      certificateUrl: process.env.PUBLIC_URL + "/bootcamp.png",
       icon: "🚀",
       category: "entrepreneurship",
       skills: ["Entrepreneurship", "Innovation", "Startup", "Business"]
@@ -103,7 +103,7 @@ const Certifications: React.FC = () => {
       issuer: "Deloitte",
       date: "2025",
       description: "Participated in Deloitte's technology consulting workshop focusing on digital transformation and enterprise solutions.",
-      certificateUrl: "/deloit3.jpeg",
+      certificateUrl: process.env.PUBLIC_URL + "/deloit3.jpeg",
       icon: "💼",
       category: "consulting",
       skills: ["Consulting", "Digital Transformation", "Enterprise Solutions"]
@@ -114,7 +114,7 @@ const Certifications: React.FC = () => {
       issuer: "Vadodara Tech Community",
       date: "2025",
       description: "Attended Vadodara Tech Summit showcasing latest trends in technology and networking with industry professionals.",
-      certificateUrl: "/vadodra.png",
+      certificateUrl: process.env.PUBLIC_URL + "/vadodra.png",
       icon: "🌐",
       category: "conference",
       skills: ["Technology Trends", "Networking", "Industry Insights"]
@@ -125,7 +125,7 @@ const Certifications: React.FC = () => {
       issuer: "Deloitte Digital",
       date: "2025",
       description: "Completed Deloitte's digital innovation program focusing on emerging technologies and digital strategy.",
-      certificateUrl: "/delotie.jpeg",
+      certificateUrl: process.env.PUBLIC_URL + "/delotie.jpeg",
       icon: "💡",
       category: "innovation",
       skills: ["Digital Innovation", "Emerging Tech", "Strategy"]
@@ -136,7 +136,7 @@ const Certifications: React.FC = () => {
       issuer: "Google",
       date: "2025",
       description: "Participated in Google's Gemini AI workshop exploring advanced AI capabilities and implementation strategies.",
-      certificateUrl: "/gemini.jpeg",
+      certificateUrl: process.env.PUBLIC_URL + "/gemini.jpeg",
       icon: "🤖",
       category: "ai",
       skills: ["Gemini AI", "Machine Learning", "Google AI"]
@@ -147,7 +147,7 @@ const Certifications: React.FC = () => {
       issuer: "Indian Institute of Technology Kharagpur",
       date: "2026",
       description: "Attended IIT technology conference featuring cutting-edge research and innovations in computer science.",
-      certificateUrl: "/iit.jpeg",
+      certificateUrl: process.env.PUBLIC_URL + "/iit.jpeg",
       icon: "🎯",
       category: "academic",
       skills: ["Research", "Innovation", "Computer Science"]
@@ -158,7 +158,7 @@ const Certifications: React.FC = () => {
   issuer: "Parul University - Department of CSE",
   date: "Jan–Mar 2026",
   description: "Participated in a hands-on technical workshop on Artificial Intelligence and Machine Learning focusing on Generative AI concepts and practical implementation.",
-  certificateUrl: "/gen.jpeg",
+  certificateUrl: process.env.PUBLIC_URL + "/gen.jpeg",
   icon: "🤖",
   category: "workshop",
   skills: ["Artificial Intelligence", "Machine Learning", "Generative AI"]
@@ -169,7 +169,7 @@ const Certifications: React.FC = () => {
   issuer: "AICTE & Ministry of Education",
   date: "6 Feb 2026",
   description: "Participated in the AI Pre-Summit event contributing to discussions shaping the vision for IndiaAI Impact Summit 2026 and the future of the IndiaAI Mission.",
-  certificateUrl: "/ai.jpeg",
+  certificateUrl: process.env.PUBLIC_URL + "/ai.jpeg",
   icon: "🚀",
   category: "conference",
   skills: ["Artificial Intelligence", "Innovation", "IndiaAI Mission"]
@@ -180,7 +180,7 @@ const Certifications: React.FC = () => {
   issuer: "Indian Institute of Technology Delhi & Unstop",
   date: "2025",
   description: "Participated in the eDC Blueprint 6.0 event during Unstop Holiday Fest 2025, gaining insights into entrepreneurship, innovation, and startup ecosystem initiatives organized by IIT Delhi.",
-  certificateUrl: "/iit_delhi.jpeg",
+  certificateUrl: process.env.PUBLIC_URL + "/iit_delhi.jpeg",
   icon: "🏆",
   category: "competition",
   skills: ["Entrepreneurship", "Innovation", "Startup Ecosystem"]
