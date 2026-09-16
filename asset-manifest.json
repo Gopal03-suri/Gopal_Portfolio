@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Gopal03-suri/Gopal_Portfolio/static/css/main.92b82f4a.css",
+    "main.js": "/Gopal03-suri/Gopal_Portfolio/static/js/main.7af6514d.js",
+    "static/js/453.818aefe1.chunk.js": "/Gopal03-suri/Gopal_Portfolio/static/js/453.818aefe1.chunk.js",
+    "index.html": "/Gopal03-suri/Gopal_Portfolio/index.html",
+    "main.92b82f4a.css.map": "/Gopal03-suri/Gopal_Portfolio/static/css/main.92b82f4a.css.map",
+    "main.7af6514d.js.map": "/Gopal03-suri/Gopal_Portfolio/static/js/main.7af6514d.js.map",
+    "453.818aefe1.chunk.js.map": "/Gopal03-suri/Gopal_Portfolio/static/js/453.818aefe1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.92b82f4a.css",
+    "static/js/main.7af6514d.js"
+  ]
+}
