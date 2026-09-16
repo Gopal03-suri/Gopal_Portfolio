@@ -1,186 +1,268 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, MessageCircle } from 'lucide-react';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Twitter,
+  Send,
+  CheckCircle2,
+  Copy,
+  Terminal,
+  Sparkles,
+  Bot,
+  Zap,
+} from 'lucide-react';
 import './Contact.css';
 
-const Contact: React.FC = () => {
+interface ContactProps {
+  onOpenAI: () => void;
+}
+
+const Contact: React.FC<ContactProps> = ({ onOpenAI }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Reset form
+
+    // Simulate sending transmission
+    await new Promise((resolve) => setTimeout(resolve, 1400));
+
+    setIsSubmitting(false);
+    setSubmitted(true);
     setFormData({
       name: '',
       email: '',
       subject: '',
-      message: ''
+      message: '',
     });
-    
-    setIsSubmitting(false);
-    alert('Message sent successfully!');
+
+    setTimeout(() => {
+      setSubmitted(false);
+    }, 6000);
   };
 
-  const contactInfo = [
+  const copyToClipboard = (text: string, fieldName: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedField(fieldName);
+    setTimeout(() => setCopiedField(null), 2500);
+  };
+
+  const contactCards = [
     {
-      icon: <Mail size={24} />,
-      title: "Email",
-      value: "gopalpurbey708@gmail.com",
-      link: "mailto:gopal.kumar@example.com"
+      icon: <Mail size={22} className="text-cyan" />,
+      title: 'Email Address',
+      value: 'gopalpurbey708@gmail.com',
+      copyValue: 'gopalpurbey708@gmail.com',
+      actionLabel: 'Click to Copy Email',
+      href: 'mailto:gopalpurbey708@gmail.com',
     },
     {
-      icon: <Phone size={24} />,
-      title: "Phone",
-      value: "+91 7827008357",
-      link: "tel:+91XXXXXXXXX"
+      icon: <Phone size={22} className="text-emerald" />,
+      title: 'Mobile / WhatsApp',
+      value: '+91 7827008357',
+      copyValue: '+917827008357',
+      actionLabel: 'Click to Copy Phone',
+      href: 'tel:+917827008357',
     },
     {
-      icon: <MapPin size={24} />,
-      title: "Location",
-      value: "Gujarat, India",
-      link: "#"
-    }
+      icon: <MapPin size={22} className="text-purple" />,
+      title: 'Campus & Location',
+      value: 'Gujarat, India (Parul University)',
+      copyValue: 'Gujarat, India',
+      actionLabel: 'Location Base',
+      href: '#',
+    },
   ];
 
   const socialLinks = [
     {
-      icon: <Github size={28} />,
-      name: "GitHub",
-      url: "https://github.com/Gopal03-suri",
-      color: "#333"
-    },
-  {
-  icon: <Linkedin size={28} />,
-  name: "LinkedIn",
-  url: "https://www.linkedin.com/in/gopal-kumar-purbey-ba7550314",
-  color: "#0077b5"
-},
-    {
-      icon: <Twitter size={28} />,
-      name: "Twitter",
-      url: "https://x.com/Gopal76328206",
-      color: "#1da1f2"
+      icon: <Linkedin size={22} />,
+      name: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/gopal-kumar-purbey-ba7550314',
+      handle: 'gopal-kumar-purbey',
+      color: '#0077b5',
     },
     {
-      icon: <MessageCircle size={28} />,
-      name: "Discord",
-      url: "#",
-      color: "#7289da"
-    }
+      icon: <Github size={22} />,
+      name: 'GitHub',
+      url: 'https://github.com/Gopal03-suri',
+      handle: 'Gopal03-suri',
+      color: '#333333',
+    },
+    {
+      icon: <Twitter size={22} />,
+      name: 'Twitter / X',
+      url: 'https://x.com/Gopal76328206',
+      handle: '@Gopal76328206',
+      color: '#1da1f2',
+    },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1
-    }
-  };
-
   return (
-    <div className="contact page-container">
+    <div className="contact-page page-container">
       <div className="container">
-        <motion.div 
-          className="contact-header"
+        {/* Header */}
+        <motion.div
+          className="section-title-wrap"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1>Get In <span className="gradient-text">Touch</span></h1>
-          <p>Let's discuss your project ideas or just say hello!</p>
+          <span className="cyber-badge emerald">
+            <Zap size={14} /> TRANSMISSION CONSOLE
+          </span>
+          <h1>Get In <span className="gradient-text">Direct Touch</span></h1>
+          <p>
+            Whether you have an exciting AI/ML internship opportunity, a project proposal, or just want to discuss tech, I’d love to connect.
+          </p>
         </motion.div>
 
-        <motion.div 
-          className="contact-content"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div className="contact-info-section" variants={itemVariants}>
-            <h2>Let's Connect</h2>
-            <p>
-              I'm always interested in hearing about new opportunities, 
-              collaborations, or just having a chat about technology and development.
-            </p>
+        {/* Main 2-Col Grid */}
+        <div className="contact-main-grid">
+          {/* Left Column: Direct Info & Social Matrix */}
+          <motion.div
+            className="contact-info-col"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Status Card */}
+            <div className="telemetry-status-card cyber-card">
+              <div className="telemetry-head">
+                <span className="pulse-dot"></span>
+                <span className="font-mono telemetry-status-text">DISPATCH READY // LATENCY: &lt; 24H</span>
+              </div>
+              <h3>Open for AI/ML Internships & Collaborations</h3>
+              <p>
+                Currently seeking dynamic software engineering internships, research fellowships, and freelance projects for 2025/2026.
+              </p>
+            </div>
 
-            <div className="contact-info-grid">
-              {contactInfo.map((info, index) => (
-                <motion.a
-                  key={index}
-                  href={info.link}
-                  className="contact-info-card"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
+            {/* Direct Cards */}
+            <div className="contact-cards-stack">
+              {contactCards.map((card, idx) => (
+                <div
+                  key={idx}
+                  className="contact-direct-card cyber-card"
+                  onClick={() => copyToClipboard(card.copyValue, card.title)}
                 >
-                  <div className="info-icon">
-                    {info.icon}
+                  <div className="direct-card-icon">{card.icon}</div>
+                  <div className="direct-card-body">
+                    <span className="direct-card-title">{card.title}</span>
+                    <span className="direct-card-val">{card.value}</span>
                   </div>
-                  <div className="info-content">
-                    <h4>{info.title}</h4>
-                    <p>{info.value}</p>
-                  </div>
-                </motion.a>
+                  <button
+                    className="copy-btn"
+                    title={card.actionLabel}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      copyToClipboard(card.copyValue, card.title);
+                    }}
+                  >
+                    {copiedField === card.title ? (
+                      <CheckCircle2 size={16} className="text-emerald" />
+                    ) : (
+                      <Copy size={16} />
+                    )}
+                  </button>
+                </div>
               ))}
             </div>
 
-            <div className="social-section">
-              <h3>Follow Me</h3>
-              <div className="social-links">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.url}
+            {/* Social Network */}
+            <div className="social-connect-card cyber-card">
+              <h4>Digital Profiles</h4>
+              <div className="social-connect-grid">
+                {socialLinks.map((soc, sIdx) => (
+                  <a
+                    key={sIdx}
+                    href={soc.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="social-link"
-                    style={{ backgroundColor: social.color }}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    transition={{ duration: 0.2 }}
+                    className="social-connect-link"
                   >
-                    {social.icon}
-                  </motion.a>
+                    <div className="soc-icon-wrap">{soc.icon}</div>
+                    <div className="soc-info">
+                      <span className="soc-name">{soc.name}</span>
+                      <span className="soc-handle font-mono">{soc.handle}</span>
+                    </div>
+                  </a>
                 ))}
               </div>
             </div>
+
+            {/* Assistant Banner */}
+            <div className="assistant-quick-banner cyber-card" onClick={onOpenAI}>
+              <div className="ai-banner-icon">
+                <Bot size={24} className="text-cyan" />
+              </div>
+              <div className="ai-banner-text">
+                <h4>Have a quick query?</h4>
+                <p>Chat directly with Gopal-AI for instant answers.</p>
+              </div>
+              <Sparkles size={18} className="text-purple" />
+            </div>
           </motion.div>
 
-          <motion.div className="contact-form-section" variants={itemVariants}>
-            <div className="form-container">
-              <h2>Send Me a Message</h2>
-              <form onSubmit={handleSubmit} className="contact-form">
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="name">Name</label>
+          {/* Right Column: Cyber Message Form */}
+          <motion.div
+            className="contact-form-col"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="message-console-card cyber-card">
+              <div className="console-header-bar font-mono">
+                <Terminal size={14} />
+                <span>SECURE_DISPATCH_PROTOCOL.exe</span>
+              </div>
+
+              <h2>Send an Encrypted Message</h2>
+              <p className="console-subtitle">
+                Fill out the transmission fields below to send a direct notification.
+              </p>
+
+              {submitted && (
+                <motion.div
+                  className="success-alert-box"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <CheckCircle2 size={20} className="text-emerald" />
+                  <div>
+                    <strong>Transmission Received!</strong>
+                    <p>Thank you for reaching out. I will respond to your message promptly.</p>
+                  </div>
+                </motion.div>
+              )}
+
+              <form onSubmit={handleSubmit} className="cyber-form">
+                <div className="form-row-dual">
+                  <div className="cyber-input-group">
+                    <label htmlFor="name" className="font-mono">YOUR NAME *</label>
                     <input
                       type="text"
                       id="name"
@@ -188,11 +270,13 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      placeholder="Your full name"
+                      placeholder="e.g. Alex Morgan"
+                      className="cyber-input"
                     />
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email</label>
+
+                  <div className="cyber-input-group">
+                    <label htmlFor="email" className="font-mono">EMAIL ADDRESS *</label>
                     <input
                       type="email"
                       id="email"
@@ -200,13 +284,14 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      placeholder="your.email@example.com"
+                      placeholder="alex@company.com"
+                      className="cyber-input"
                     />
                   </div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="subject">Subject</label>
+                <div className="cyber-input-group">
+                  <label htmlFor="subject" className="font-mono">SUBJECT *</label>
                   <input
                     type="text"
                     id="subject"
@@ -214,12 +299,13 @@ const Contact: React.FC = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    placeholder="What's this about?"
+                    placeholder="Project Inquiry / Internship Opportunity"
+                    className="cyber-input"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="message">Message</label>
+                <div className="cyber-input-group">
+                  <label htmlFor="message" className="font-mono">MESSAGE TRANSMISSION *</label>
                   <textarea
                     id="message"
                     name="message"
@@ -227,56 +313,31 @@ const Contact: React.FC = () => {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    placeholder="Tell me about your project or just say hi!"
+                    placeholder="Describe your project, team, or opportunity in detail..."
+                    className="cyber-input"
                   />
                 </div>
 
-                <motion.button
+                <button
                   type="submit"
-                  className="submit-btn"
                   disabled={isSubmitting}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  className="btn-cyber-primary submit-full-btn"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="spinner"></div>
-                      Sending...
+                      <div className="spinner" style={{ width: 18, height: 18 }}></div>
+                      Dispatching Transmission...
                     </>
                   ) : (
                     <>
-                      <Send size={20} />
-                      Send Message
+                      <Send size={18} /> Transmit Message
                     </>
                   )}
-                </motion.button>
+                </button>
               </form>
             </div>
           </motion.div>
-        </motion.div>
-
-        <motion.div 
-          className="availability-section"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <div className="availability-card">
-            <h2>Current Availability</h2>
-            <div className="status-indicator">
-              <div className="status-dot available"></div>
-              <span>Available for new projects</span>
-            </div>
-            <p>
-              I'm currently open to freelance opportunities, internships, and 
-              collaborative projects. Let's build something amazing together!
-            </p>
-            <div className="response-time">
-              <span>⚡ Usually responds within 24 hours</span>
-            </div>
-          </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

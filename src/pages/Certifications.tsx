@@ -1,400 +1,340 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Award, ExternalLink, Calendar, Building } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Award,
+  ExternalLink,
+  Calendar,
+  Building,
+  CheckCircle2,
+  Shield,
+  Eye,
+} from 'lucide-react';
+import { CertificateItem } from '../components/CertificateModal';
 import './Certifications.css';
 
-interface Certificate {
-  id: number;
-  title: string;
-  issuer: string;
-  date: string;
-  description: string;
-  certificateUrl?: string;
-  badgeUrl?: string;
-  icon: string;
-  category: string;
-  skills: string[];
+interface CertificationsProps {
+  onSelectCertificate: (cert: CertificateItem) => void;
 }
 
-const Certifications: React.FC = () => {
-  const certificates: Certificate[] = [
+const Certifications: React.FC<CertificationsProps> = ({ onSelectCertificate }) => {
+  const [filter, setFilter] = useState('all');
+
+  const certificates: CertificateItem[] = [
     {
       id: 1,
-      title: "Oracle Cloud Infrastructure 2025 Certified AI Foundation Associate",
-      issuer: "Oracle University",
-      date: "2025",
-      description: "Completed Oracle Cloud Infrastructure certification and earned AI Foundation Associate badge from Oracle University.",
-      certificateUrl: process.env.PUBLIC_URL + "/oracle-certi.jpg",
-      badgeUrl: process.env.PUBLIC_URL +"/orbad.jpeg",
-      icon: "☁️",
-      category: "cloud",
-      skills: ["Oracle Cloud", "AI Foundation", "Cloud Computing"]
+      title: 'Oracle Cloud Infrastructure 2025 Certified AI Foundation Associate',
+      issuer: 'Oracle University',
+      date: '2025',
+      description:
+        'Official OCI AI certification validating proficiency in Artificial Intelligence core concepts, machine learning workloads, natural language processing, and Oracle Cloud AI services.',
+      certificateUrl: process.env.PUBLIC_URL + '/oracle-certi.jpg',
+      badgeUrl: process.env.PUBLIC_URL + '/orbad.jpeg',
+      icon: '☁️',
+      category: 'cloud',
+      skills: ['Oracle Cloud Infrastructure (OCI)', 'AI Foundation', 'Machine Learning Services', 'Cloud Architecture'],
     },
     {
       id: 2,
-      title: "AWS Academy Graduate - AWS Academy Cloud Foundation",
-      issuer: "AWS Academy",
-      date: "2025",
-      description: "Successfully completed 20 hours AWS Academy Cloud Foundation course and earned graduate certificate from AWS Academy.",
-      certificateUrl: process.env.PUBLIC_URL +"/aws-20hrs.jpg",
-      badgeUrl: process.env.PUBLIC_URL + "/badge-aws.jpg",
-      icon: "🎆",
-      category: "cloud",
-      skills: ["AWS", "Cloud Foundation", "Cloud Computing"]
+      title: 'AWS Academy Graduate - Cloud Foundation',
+      issuer: 'AWS Academy',
+      date: '2025',
+      description:
+        'Successfully completed comprehensive 20-hour AWS Cloud Foundation curriculum covering cloud computing, compute, networking, security, storage, and architecture principles.',
+      certificateUrl: process.env.PUBLIC_URL + '/aws-20hrs.jpg',
+      badgeUrl: process.env.PUBLIC_URL + '/badge-aws.jpg',
+      icon: '⚡',
+      category: 'cloud',
+      skills: ['Amazon Web Services (AWS)', 'Cloud Computing', 'IAM Security', 'S3 / EC2 Architecture'],
+    },
+    {
+      id: 13,
+      title: 'Generative Artificial Intelligence Workshop',
+      issuer: 'Parul University - Department of CSE',
+      date: 'Jan – Mar 2026',
+      description:
+        'Hands-on technical workshop delving into deep Generative AI paradigms, Transformer architectures, prompt engineering, and real-world implementation pipelines.',
+      certificateUrl: process.env.PUBLIC_URL + '/gen.jpeg',
+      icon: '🤖',
+      category: 'ai',
+      skills: ['Generative AI', 'Transformers', 'Prompt Engineering', 'PyTorch / LLMs'],
+    },
+    {
+      id: 14,
+      title: 'AICTE HEIs Engagement AI Pre-Summit',
+      issuer: 'AICTE & Ministry of Education',
+      date: 'Feb 2026',
+      description:
+        'Selected participant in the national AI Pre-Summit shaping strategic vision and deployment frameworks for the IndiaAI Mission and Higher Education Institutes.',
+      certificateUrl: process.env.PUBLIC_URL + '/ai.jpeg',
+      icon: '🚀',
+      category: 'summit',
+      skills: ['IndiaAI Mission', 'National AI Policy', 'Emerging Tech Ecosystem', 'Innovation'],
     },
     {
       id: 3,
-      title: "AWS DevOps Meets AI",
-      issuer: "AWS",
-      date: "2025",
-      description: "Attended comprehensive seminar on DevOps integration with AI technologies and modern development practices.",
-      certificateUrl: process.env.PUBLIC_URL + "/aws.jpeg",
-      icon: "⚙️",
-      category: "devops",
-      skills: ["DevOps", "AI", "AWS", "Modern Development"]
+      title: 'AWS DevOps Meets AI',
+      issuer: 'AWS Community',
+      date: '2025',
+      description:
+        'Advanced masterclass exploring the intersection of DevOps CI/CD pipelines, MLOps, automated testing, and cloud infrastructure with AI tooling.',
+      certificateUrl: process.env.PUBLIC_URL + '/aws.jpeg',
+      icon: '⚙️',
+      category: 'cloud',
+      skills: ['DevOps', 'MLOps', 'AWS', 'Automated Pipelines'],
     },
     {
-      id: 4,
-      title: "PU DAO Hack Tour - Polkadot BootCamp",
-      issuer: "PU DAO",
-      date: "2025",
-      description: "Participated in 2 days Polkadot BootCamp organized by PU DAO Hack Tour at Parul University.",
-      certificateUrl: process.env.PUBLIC_URL + "/hacktour.jpg",
-      icon: "🚀",
-      category: "blockchain",
-      skills: ["Blockchain", "Polkadot", "Web3", "Hackathon"]
-    },
-    {
-      id: 5,
-      title: "SkillEcted Webinar Participation",
-      issuer: "SkillEcted",
-      date: "2025",
-      description: "Participated in webinar on 'Build a Movie Search App Using React JS – Explore, Search & Discover!' organized by SkillEcted.",
-      certificateUrl: process.env.PUBLIC_URL + "/skilltech1.jpg",
-      icon: "🎓",
-      category: "web",
-      skills: ["React JS", "Web Development", "JavaScript"]
-    },
-    {
-      id: 6,
-      title: "Gujarat's Largest Technical Festival",
-      issuer: "Technical Festival Committee",
-      date: "2024",
-      description: "Participated in Gujarat's largest technical festival showcasing technical skills and innovation.",
-      certificateUrl: process.env.PUBLIC_URL + "/resume.pdf",
-      icon: "🏆",
-      category: "competition",
-      skills: ["Technical Skills", "Innovation", "Competition"]
-    },
-    {
-      id: 7,
-      title: "Startup Bootcamp Participant",
-      issuer: "Startup Incubator",
-      date: "2024",
-      description: "Participated in an intensive startup bootcamp program focusing on entrepreneurship and innovation.",
-      certificateUrl: process.env.PUBLIC_URL + "/bootcamp.png",
-      icon: "🚀",
-      category: "entrepreneurship",
-      skills: ["Entrepreneurship", "Innovation", "Startup", "Business"]
-    },
-    {
-      id: 8,
-      title: "Deloitte Technology Consulting Workshop",
-      issuer: "Deloitte",
-      date: "2025",
-      description: "Participated in Deloitte's technology consulting workshop focusing on digital transformation and enterprise solutions.",
-      certificateUrl: process.env.PUBLIC_URL + "/deloit3.jpeg",
-      icon: "💼",
-      category: "consulting",
-      skills: ["Consulting", "Digital Transformation", "Enterprise Solutions"]
-    },
-    {
-      id: 9,
-      title: "Vadodara Tech Summit",
-      issuer: "Vadodara Tech Community",
-      date: "2025",
-      description: "Attended Vadodara Tech Summit showcasing latest trends in technology and networking with industry professionals.",
-      certificateUrl: process.env.PUBLIC_URL + "/vadodra.png",
-      icon: "🌐",
-      category: "conference",
-      skills: ["Technology Trends", "Networking", "Industry Insights"]
-    },
-    {
-      id: 10,
-      title: "Deloitte Digital Innovation Program",
-      issuer: "Deloitte Digital",
-      date: "2025",
-      description: "Completed Deloitte's digital innovation program focusing on emerging technologies and digital strategy.",
-      certificateUrl: process.env.PUBLIC_URL + "/delotie.jpeg",
-      icon: "💡",
-      category: "innovation",
-      skills: ["Digital Innovation", "Emerging Tech", "Strategy"]
-    },
-    {
-      id: 11,
-      title: "Google Gemini AI Workshop",
-      issuer: "Google",
-      date: "2025",
-      description: "Participated in Google's Gemini AI workshop exploring advanced AI capabilities and implementation strategies.",
-      certificateUrl: process.env.PUBLIC_URL + "/gemini.jpeg",
-      icon: "🤖",
-      category: "ai",
-      skills: ["Gemini AI", "Machine Learning", "Google AI"]
+      id: 15,
+      title: 'eDC Blueprint 6.0 – Unstop Fest',
+      issuer: 'IIT Delhi & Unstop',
+      date: '2025',
+      description:
+        'Recognized participant in the eDC Blueprint startup and entrepreneurship fest organized by Indian Institute of Technology Delhi.',
+      certificateUrl: process.env.PUBLIC_URL + '/iit_delhi.jpeg',
+      icon: '🏛️',
+      category: 'academic',
+      skills: ['IIT Delhi', 'Innovation', 'Startup Ecosystem', 'Design Thinking'],
     },
     {
       id: 12,
-      title: "IIT Technology Conference",
-      issuer: "Indian Institute of Technology Kharagpur",
-      date: "2026",
-      description: "Attended IIT technology conference featuring cutting-edge research and innovations in computer science.",
-      certificateUrl: process.env.PUBLIC_URL + "/iit.jpeg",
-      icon: "🎯",
-      category: "academic",
-      skills: ["Research", "Innovation", "Computer Science"]
+      title: 'IIT Kharagpur Technology Conference',
+      issuer: 'Indian Institute of Technology Kharagpur',
+      date: '2026',
+      description:
+        'Attended premier technology summit featuring breakthroughs in computing, data engineering, and modern computational models.',
+      certificateUrl: process.env.PUBLIC_URL + '/iit.jpeg',
+      icon: '🎯',
+      category: 'academic',
+      skills: ['Research', 'Advanced Computer Science', 'Technical Innovation'],
     },
-  {
-  id: 13,
-  title: "Generative Artificial Intelligence Workshop",
-  issuer: "Parul University - Department of CSE",
-  date: "Jan–Mar 2026",
-  description: "Participated in a hands-on technical workshop on Artificial Intelligence and Machine Learning focusing on Generative AI concepts and practical implementation.",
-  certificateUrl: process.env.PUBLIC_URL + "/gen.jpeg",
-  icon: "🤖",
-  category: "workshop",
-  skills: ["Artificial Intelligence", "Machine Learning", "Generative AI"]
-  },
-  {
-  id: 14,
-  title: "AICTE HEIs Engagement AI Pre-Summit",
-  issuer: "AICTE & Ministry of Education",
-  date: "6 Feb 2026",
-  description: "Participated in the AI Pre-Summit event contributing to discussions shaping the vision for IndiaAI Impact Summit 2026 and the future of the IndiaAI Mission.",
-  certificateUrl: process.env.PUBLIC_URL + "/ai.jpeg",
-  icon: "🚀",
-  category: "conference",
-  skills: ["Artificial Intelligence", "Innovation", "IndiaAI Mission"]
-  },
-  {
-  id: 15,
-  title: "eDC Blueprint 6.0 – Unstop Holiday Fest 2025",
-  issuer: "Indian Institute of Technology Delhi & Unstop",
-  date: "2025",
-  description: "Participated in the eDC Blueprint 6.0 event during Unstop Holiday Fest 2025, gaining insights into entrepreneurship, innovation, and startup ecosystem initiatives organized by IIT Delhi.",
-  certificateUrl: process.env.PUBLIC_URL + "/iit_delhi.jpeg",
-  icon: "🏆",
-  category: "competition",
-  skills: ["Entrepreneurship", "Innovation", "Startup Ecosystem"]
-}
-
+    {
+      id: 11,
+      title: 'Google Gemini AI Workshop',
+      issuer: 'Google Developer Community',
+      date: '2025',
+      description:
+        'Intensive hands-on training exploring Google Gemini multimodal AI models, API integration, and function calling workflows.',
+      certificateUrl: process.env.PUBLIC_URL + '/gemini.jpeg',
+      icon: '✨',
+      category: 'ai',
+      skills: ['Google Gemini', 'Multimodal AI', 'Function Calling', 'API Integration'],
+    },
+    {
+      id: 4,
+      title: 'PU DAO Hack Tour - Polkadot BootCamp',
+      issuer: 'PU DAO & Polkadot',
+      date: '2025',
+      description:
+        'Two-day intensive Web3 and smart contract bootcamp held at Parul University exploring decentralized protocols and blockchain architecture.',
+      certificateUrl: process.env.PUBLIC_URL + '/hacktour.jpg',
+      icon: '⛓️',
+      category: 'hackathon',
+      skills: ['Polkadot', 'Web3', 'Decentralized Systems', 'Hackathon'],
+    },
+    {
+      id: 8,
+      title: 'Deloitte Technology Consulting Workshop',
+      issuer: 'Deloitte',
+      date: '2025',
+      description:
+        'Participated in enterprise technology consulting simulation focusing on enterprise IT strategy, digital transformation, and modern solution architecture.',
+      certificateUrl: process.env.PUBLIC_URL + '/deloit3.jpeg',
+      icon: '💼',
+      category: 'consulting',
+      skills: ['Deloitte Consulting', 'Digital Transformation', 'Enterprise Systems'],
+    },
+    {
+      id: 10,
+      title: 'Deloitte Digital Innovation Program',
+      issuer: 'Deloitte Digital',
+      date: '2025',
+      description:
+        'Digital innovation masterclass analyzing emerging enterprise technologies and agile solution delivery methodologies.',
+      certificateUrl: process.env.PUBLIC_URL + '/delotie.jpeg',
+      icon: '💡',
+      category: 'consulting',
+      skills: ['Digital Strategy', 'Emerging Tech', 'Enterprise Solutions'],
+    },
+    {
+      id: 9,
+      title: 'Vadodara Tech Summit',
+      issuer: 'Tech Community Gujarat',
+      date: '2025',
+      description:
+        'Attended regional technology summit exploring future tech trends, enterprise software, and industry networking.',
+      certificateUrl: process.env.PUBLIC_URL + '/vadodra.png',
+      icon: '🌐',
+      category: 'summit',
+      skills: ['Tech Trends', 'Industry Networking', 'Software Ecosystem'],
+    },
+    {
+      id: 7,
+      title: 'Startup Bootcamp Participant',
+      issuer: 'Incubation Center',
+      date: '2024',
+      description:
+        'Participated in intensive product validation, business modeling, and tech startup incubator bootcamp.',
+      certificateUrl: process.env.PUBLIC_URL + '/bootcamp.png',
+      icon: '🚀',
+      category: 'hackathon',
+      skills: ['Entrepreneurship', 'Product Strategy', 'Incubation'],
+    },
+    {
+      id: 5,
+      title: 'SkillEcted React Application Webinar',
+      issuer: 'SkillEcted',
+      date: '2025',
+      description:
+        'Participated in hands-on frontend architecture webinar on building real-time movie search & exploration applications with React JS.',
+      certificateUrl: process.env.PUBLIC_URL + '/skilltech1.jpg',
+      icon: '💻',
+      category: 'ai',
+      skills: ['React JS', 'Component Lifecycle', 'API Fetching'],
+    },
   ];
 
   const categories = [
-    { key: 'all', label: 'All Certifications', color: '#667eea' },
-    { key: 'cloud', label: 'Cloud Computing', color: '#4ecdc4' },
-    { key: 'web', label: 'Web Development', color: '#ff6b6b' },
-    { key: 'devops', label: 'DevOps & AI', color: '#45b7d1' },
-    { key: 'blockchain', label: 'Blockchain', color: '#96ceb4' },
-    { key: 'competition', label: 'Competitions', color: '#feca57' },
-    { key: 'entrepreneurship', label: 'Entrepreneurship', color: '#ff9ff3' },
-    { key: 'consulting', label: 'Consulting', color: '#a55eea' },
-    { key: 'conference', label: 'Conferences', color: '#26de81' },
-    { key: 'innovation', label: 'Innovation', color: '#fd79a8' },
-    { key: 'ai', label: 'AI & ML', color: '#00b894' },
-    { key: 'academic', label: 'Academic', color: '#e17055' }
+    { key: 'all', label: 'All Credentials' },
+    { key: 'cloud', label: '☁️ Cloud & Infrastructure' },
+    { key: 'ai', label: '🤖 AI & Machine Learning' },
+    { key: 'summit', label: '🚀 Summits & Conferences' },
+    { key: 'academic', label: '🏛️ IITs & Academic' },
+    { key: 'consulting', label: '💼 Deloitte Consulting' },
   ];
 
-  const [filter, setFilter] = React.useState('all');
-
-  const filteredCertificates = filter === 'all' 
-    ? certificates 
-    : certificates.filter(cert => cert.category === filter);
+  const filteredCerts =
+    filter === 'all'
+      ? certificates
+      : certificates.filter((c) => c.category === filter);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.1
-      }
-    }
+      transition: { staggerChildren: 0.08 },
+    },
   };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1
-    }
+    visible: { y: 0, opacity: 1 },
   };
 
   return (
-    <div className="certifications page-container">
+    <div className="certs-page page-container">
       <div className="container">
-        <motion.div 
-          className="certifications-header"
+        {/* Header */}
+        <motion.div
+          className="section-title-wrap"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1>My <span className="gradient-text">Certifications</span></h1>
-          <p>Professional certifications and achievements that validate my expertise</p>
+          <span className="cyber-badge emerald">
+            <Shield size={14} /> INDUSTRY VALIDATED
+          </span>
+          <h1>Verified <span className="gradient-text">Certifications & Summits</span></h1>
+          <p>
+            Official accreditations from Oracle, AWS Academy, Google, AICTE, IIT Delhi, IIT Kharagpur, and Deloitte.
+          </p>
         </motion.div>
 
-        <motion.div 
-          className="filter-tabs"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          {categories.map((category) => (
+        {/* Filter Navigation */}
+        <div className="certs-filter-bar">
+          {categories.map((cat) => (
             <button
-              key={category.key}
-              className={`filter-tab ${filter === category.key ? 'active' : ''}`}
-              onClick={() => setFilter(category.key)}
-              style={{ 
-                borderColor: category.color,
-                ...(filter === category.key && { 
-                  backgroundColor: category.color,
-                  color: 'white'
-                })
-              }}
+              key={cat.key}
+              onClick={() => setFilter(cat.key)}
+              className={`cert-filter-btn ${filter === cat.key ? 'active' : ''}`}
             >
-              {category.label}
+              {cat.label}
             </button>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div 
-          className="certificates-grid"
+        {/* Certs Grid */}
+        <motion.div
+          className="certs-cards-grid"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {filteredCertificates.map((certificate) => (
-            <motion.div
-              key={certificate.id}
-              className="certificate-card"
-              variants={itemVariants}
-              whileHover={{ y: -10, scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="certificate-header">
-                <div className="certificate-icon">
-                  {certificate.icon}
-                </div>
-                <div className="certificate-meta">
-                  <div className="certificate-date">
-                    <Calendar size={16} />
-                    {certificate.date}
+          <AnimatePresence>
+            {filteredCerts.map((cert) => (
+              <motion.div
+                key={cert.id}
+                layout
+                className="cert-item-card cyber-card"
+                variants={itemVariants}
+                whileHover={{ y: -6 }}
+                onClick={() => onSelectCertificate(cert)}
+              >
+                {/* Header Strip */}
+                <div className="cert-card-top">
+                  <div className="cert-card-icon">{cert.icon}</div>
+                  <div className="cert-card-meta">
+                    <span className="cert-date font-mono">
+                      <Calendar size={13} /> {cert.date}
+                    </span>
+                    <span className="cert-issuer font-mono">
+                      <Building size={13} /> {cert.issuer}
+                    </span>
                   </div>
-                  <div className="certificate-issuer">
-                    <Building size={16} />
-                    {certificate.issuer}
-                  </div>
                 </div>
-              </div>
 
-              <div className="certificate-content">
-                <h3>{certificate.title}</h3>
-                <p>{certificate.description}</p>
+                {/* Card Title & Desc */}
+                <h3 className="cert-card-title">{cert.title}</h3>
+                <p className="cert-card-description">{cert.description}</p>
 
-                <div className="certificate-skills">
-                  {certificate.skills.map((skill, index) => (
-                    <span key={index} className="skill-tag">
-                      {skill}
+                {/* Skills tags */}
+                <div className="cert-tags-row font-mono">
+                  {cert.skills.slice(0, 3).map((sk, sIdx) => (
+                    <span key={sIdx} className="cert-micro-tag">
+                      {sk}
                     </span>
                   ))}
-                </div>
-              </div>
-
-              <div className="certificate-footer">
-                <div className="certificate-actions">
-                  {certificate.certificateUrl && (
-                    <a 
-                      href={certificate.certificateUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="btn btn-primary"
-                    >
-                      <Award size={16} />
-                      View Certificate
-                    </a>
-                  )}
-                  {certificate.badgeUrl && (
-                    <a 
-                      href={certificate.badgeUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="btn btn-secondary"
-                    >
-                      <ExternalLink size={16} />
-                      View Badge
-                    </a>
+                  {cert.skills.length > 3 && (
+                    <span className="cert-micro-tag more">+{cert.skills.length - 3}</span>
                   )}
                 </div>
-              </div>
 
-              <div className="certificate-glow"></div>
-            </motion.div>
-          ))}
+                {/* Footer Action */}
+                <div className="cert-card-bottom">
+                  <button
+                    className="btn-preview-cert"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onSelectCertificate(cert);
+                    }}
+                  >
+                    <Eye size={15} /> View High-Res Certificate
+                  </button>
+                  <span className="cert-verified-icon" title="Verified Credential">
+                    <CheckCircle2 size={18} className="text-emerald" />
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
 
-        <motion.div 
-          className="certifications-stats"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2>Certification Journey</h2>
-          <div className="stats-grid">
-            <div className="stat-item">
-              <div className="stat-number">12+</div>
-              <div className="stat-label">Certifications Earned</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">8</div>
-              <div className="stat-label">Different Categories</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">20+</div>
-              <div className="stat-label">Hours of Training</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">2024-25</div>
-              <div className="stat-label">Active Learning Period</div>
+        {/* Credly & Verification Callout */}
+        <div className="credly-badge-callout cyber-card">
+          <div className="credly-callout-left">
+            <Award size={32} className="text-cyan" />
+            <div>
+              <h3>Verified Digital Credly Badges</h3>
+              <p>Explore official digital badge records issued by Oracle & AWS on Credly.</p>
             </div>
           </div>
-        </motion.div>
-
-        <motion.div 
-          className="next-goals"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2>Upcoming Goals</h2>
-          <div className="goals-list">
-            <div className="goal-item">
-              <span className="goal-icon">🎯</span>
-              <span>AWS Solutions Architect Associate</span>
-            </div>
-            <div className="goal-item">
-              <span className="goal-icon">📱</span>
-              <span>Apple Developer Certification</span>
-            </div>
-            <div className="goal-item">
-              <span className="goal-icon">🤖</span>
-              <span>Google Cloud ML Engineer</span>
-            </div>
-            <div className="goal-item">
-              <span className="goal-icon">🔒</span>
-              <span>Cybersecurity Fundamentals</span>
-            </div>
-          </div>
-        </motion.div>
+          <a
+            href="https://www.credly.com/users/gopal-purvey"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-cyber-primary"
+          >
+            <ExternalLink size={16} /> Open Credly Profile
+          </a>
+        </div>
       </div>
     </div>
   );

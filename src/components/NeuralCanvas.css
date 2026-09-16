@@ -1,0 +1,15 @@
+.neural-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: auto;
+  background: radial-gradient(circle at 50% 15%, #0d1629 0%, #060913 70%, #03050a 100%);
+  transition: background 0.3s ease;
+}
+
+[data-theme="light"] .neural-canvas {
+  background: radial-gradient(circle at 50% 15%, #ffffff 0%, #f1f5f9 60%, #e2e8f0 100%);
+}
